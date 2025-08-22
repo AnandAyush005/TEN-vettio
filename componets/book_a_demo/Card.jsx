@@ -15,7 +15,7 @@ const Card = () => {
   }, []);
 
   return (
-    <div className="flex justify-center mt-10">
+    <main className="flex justify-center mt-10">
       {/* Trigger Button */}
       <button
         onClick={() => setOpen(true)}
@@ -27,8 +27,8 @@ const Card = () => {
 
       {/* Popup Modal */}
       {open && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 ">
-          <div className="flex justify-start items-start bg-white rounded-2xl shadow-lg w-14/16 h-12/17 px-5 py-4 ">
+        <section className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 ">
+          <article className="flex justify-start items-start bg-white rounded-2xl shadow-lg w-14/16 h-12/17 px-5 py-4 ">
 
             {/* Calendar Embed */}
             <Cal
@@ -44,10 +44,10 @@ const Card = () => {
             >
               <X className="size-5"/>
             </button>
-          </div>
-        </div>
+          </article>
+        </section>
       )}
-    </div>
+    </main>
   );
 };
 
