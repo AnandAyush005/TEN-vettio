@@ -30,7 +30,7 @@ export default function Login() {
         </h2>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <input
+          < input
             name="email"
             type="email"
             placeholder="Email"

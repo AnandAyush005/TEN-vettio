@@ -1,5 +1,5 @@
-import { connectDB } from "@/app/lib/DbConnection";
-import User from "@/app/models/User";
+import { connectDB } from "../../lib/DbConnection.js";
+import User from "../../models/User.js";
 import bcrypt from "bcrypt";
 
 export async function POST(req) {

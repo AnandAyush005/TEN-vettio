@@ -1,9 +1,20 @@
+"use client";
+
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { Sparkle , Check } from "lucide-react";
 import AnimatedText from "./AnimatedText";
 import Image from "next/image";
 
 
 export default function Hero() { 
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await signOut({ redirect: false }); // don't let next-auth redirect
+    router.push("/login");              // manually redirect
+  };
+
   return (
     <header className="w-full">
       <div className="fixed top-0 left-0 w-full z-50 bg-white border-b border-indigo-200">
@@ -20,7 +31,7 @@ export default function Hero() {
           
           <nav className="hidden sm:flex items-center gap-6 text-sm font-medium">
             <a href="/find_jobs" className="px-8 py-3 rounded-lg bg-yellow-500 text-black border border-transparent hover:border-black hover:bg-white transition-colors">Find Jobs</a>
-            <a href="#" className="px-8 py-3 rounded-lg bg-yellow-500 text-black border border-transparent hover:border-black hover:bg-white transition-colors">Login & Sign up</a>
+            <a onClick={handleSignOut} className="px-8 py-3 rounded-lg bg-yellow-500 text-black border border-transparent hover:border-black hover:bg-white transition-colors">Sign Out</a>
             <a
               href="/book_a_demo"
               className="px-8 py-3 rounded-lg bg-yellow-500 text-black border border-transparent hover:border-black hover:bg-white transition-colors">

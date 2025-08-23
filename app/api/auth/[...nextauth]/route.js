@@ -4,8 +4,8 @@ import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import DiscordProvider from "next-auth/providers/discord";
 import bcrypt from "bcrypt";
-import { connectDB } from "@/app/lib/DbConnection";
-import User from "@/app/models/User";
+import {connectDB} from "../../../lib/DbConnection.js"
+import User from "../../../models/User.js";
 
 export const authOptions = {
   providers: [
