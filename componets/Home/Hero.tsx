@@ -1,5 +1,7 @@
 "use client";
-
+import {X} from "lucide-react";
+import React, { useEffect, useState } from "react";
+import Cal, { getCalApi } from "@calcom/embed-react";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Sparkle , Check } from "lucide-react";
@@ -8,6 +10,16 @@ import Image from "next/image";
 
 
 export default function Hero() { 
+
+   const [open, setOpen] = useState(false);
+  
+    useEffect(() => {
+      (async function () {
+        const cal = await getCalApi({ namespace: "30min" });
+        cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
+      })();
+    }, []);
+
   const router = useRouter();
 
   const handleSignOut = async () => {
@@ -32,11 +44,32 @@ export default function Hero() {
           <nav className="hidden sm:flex items-center gap-6 text-sm font-medium">
             <a href="/find_jobs" className="px-8 py-3 rounded-lg bg-yellow-500 text-black border border-transparent hover:border-black hover:bg-white transition-colors">Find Jobs</a>
             <a onClick={handleSignOut} className="px-8 py-3 rounded-lg bg-yellow-500 text-black border border-transparent hover:border-black hover:bg-white transition-colors">Sign Out</a>
-            <a
-              href="/book_a_demo"
-              className="px-8 py-3 rounded-lg bg-yellow-500 text-black border border-transparent hover:border-black hover:bg-white transition-colors">
+            <button
+              onClick={() => setOpen(true)}
+              className=" text-sm font-GothamMedium bg-amber-500 text-black hover:bg-white hover:text-black border-amber-500 hover:border-black rounded-lg border-2 w-[159px] h-[48px] Mobile:w-full Mobile:h-[45px] hover:border-2
+              transform transition ease-in-out duration-400 hover:shadow-md undefined"
+            >
               Book a demo
-            </a>
+            </button>
+            {open && <section className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 ">
+                      <article className="flex justify-start items-start bg-white rounded-2xl shadow-lg w-14/16 h-12/17 px-5 py-4 ">
+            
+                        {/* Calendar Embed */}
+                        <Cal
+                          namespace="30min"
+                          calLink="dibyajit-nandi/30min"
+                          style={{ width: "100%", height: "100%", overflow: "auto" }}
+                          config={{ layout: "month_view", theme: "light" }}
+                        />
+                        {/* Close Button  */}
+                        <button
+                          onClick={() => setOpen(false)}
+                          className="text-xl font-bold"
+                        >
+                          <X className="size-5"/>
+                        </button>
+                      </article>
+                    </section>}
           </nav>
         </div>
       </div>
