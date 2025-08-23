@@ -1,6 +1,10 @@
+"use client"
+
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Check, X } from "lucide-react";
 import { FaSlack, FaTwitter, FaLinkedin } from "react-icons/fa";
+
+import Book from "../book_a_Demo";
 
 const VettioLogo = () => (
   <svg
@@ -49,12 +53,7 @@ const Footer = () => {
           </div>
 
           <div className="text-center">
-            <a
-              href="/book_a_demo"
-              className="px-8 py-4 rounded-lg bg-yellow-500 text-black border border-transparent hover:border-black hover:bg-white transition-colors"
-            >
-              Book a demo
-            </a>
+            <Book />
             <div className="mt-4 flex justify-center items-center gap-4 text-sm">
               <span className="flex items-center gap-1">
                 <Check className="w-4 h-4 text-green-400" /> Free
