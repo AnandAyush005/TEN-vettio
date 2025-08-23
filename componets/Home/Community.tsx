@@ -21,7 +21,7 @@ const Community = () => {
             <div className="mt-8">
               <a
                 href="#"
-                className="px-40 py-3 rounded-lg bg-yellow-500 text-black border border-transparent hover:border-black hover:bg-white transition-colors"
+                className="px-40 py-3 rounded-lg bg-yellow-500 text-black border-2 border-transparent hover:border-black hover:bg-white transition-colors"
               >
                 Join Our Community
               </a>

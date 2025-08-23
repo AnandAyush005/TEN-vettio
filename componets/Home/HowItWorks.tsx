@@ -60,6 +60,7 @@ export default function HowItWorks() {
         </p>
 
         <div className="relative mt-16">
+          {/* center timeline line */}
           <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-0.5 bg-gray-300"></div>
 
           <div className="space-y-16">
@@ -67,25 +68,32 @@ export default function HowItWorks() {
               const isLeft = i % 2 === 0;
               return (
                 <div key={s.n} className="relative flex items-center">
+                  {/* Right Side Image */}
                   {!isLeft && (
                     <motion.div
                       initial={{ opacity: 0, x: -100 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6 }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
                       viewport={{ once: true }}
-                      className="w-1/2 flex justify-end pr-8"
+                      className="w-1/2 flex justify-center"
                     >
-                      <motion.div whileHover={{ scale: 1.05 }}>
+                      <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        className="inline-block"
+                      >
                         <Image
                           src={s.img}
                           alt={s.t}
-                          width={200}
-                          height={200}
+                          width={220}
+                          height={220}
                           className="object-contain"
                         />
                       </motion.div>
                     </motion.div>
                   )}
+
+                  {/* Text */}
                   <div
                     className={`w-1/2 ${
                       isLeft ? "pl-8 text-left" : "pr-8 text-right order-1"
@@ -94,26 +102,33 @@ export default function HowItWorks() {
                     <h3 className="font-bold text-lg">{s.t}</h3>
                     <p className="mt-5 text-gray-600 text-sm">{s.d}</p>
                   </div>
+
+                  {/* Left Side Image */}
                   {isLeft && (
                     <motion.div
                       initial={{ opacity: 0, x: 100 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6 }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
                       viewport={{ once: true }}
-                      className="w-1/2 flex justify-start pl-8 order-2"
+                      className="w-1/2 flex justify-center order-2"
                     >
-                      <motion.div whileHover={{ scale: 1.05 }}>
+                      <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        className="inline-block"
+                      >
                         <Image
                           src={s.img}
                           alt={s.t}
-                          width={200}
-                          height={200}
+                          width={220}
+                          height={220}
                           className="object-contain"
                         />
                       </motion.div>
                     </motion.div>
                   )}
 
+                  {/* Number circle */}
                   <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
                     <div
                       className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-white ${
