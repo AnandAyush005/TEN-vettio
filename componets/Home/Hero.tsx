@@ -19,10 +19,10 @@ export default function Hero() {
           </div>
           
           <nav className="hidden sm:flex items-center gap-6 text-sm font-medium">
-            <a href="#" className="px-8 py-3 rounded-lg bg-yellow-500 text-black border border-transparent hover:border-black hover:bg-white transition-colors">Find Jobs</a>
+            <a href="/find_jobs" className="px-8 py-3 rounded-lg bg-yellow-500 text-black border border-transparent hover:border-black hover:bg-white transition-colors">Find Jobs</a>
             <a href="#" className="px-8 py-3 rounded-lg bg-yellow-500 text-black border border-transparent hover:border-black hover:bg-white transition-colors">Login & Sign up</a>
             <a
-              href="#"
+              href="/book_a_demo"
               className="px-8 py-3 rounded-lg bg-yellow-500 text-black border border-transparent hover:border-black hover:bg-white transition-colors">
               Book a demo
             </a>
