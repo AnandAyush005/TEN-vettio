@@ -51,7 +51,7 @@ export default function Hero() {
         <AnimatedText />
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <button className="px-8 py-3 rounded-lg bg-yellow-400 text-black font-medium border border-transparent hover:border-black hover:bg-white transition-colors">
-            Book a demo
+            <a href="/book_a_demo">Book a demo</a>
           </button>
         </div>
         <div className="mt-4 flex justify-center items-center gap-4 text-sm">

@@ -50,7 +50,7 @@ const Footer = () => {
 
           <div className="text-center">
             <a
-              href="#"
+              href="/book_a_demo"
               className="px-8 py-4 rounded-lg bg-yellow-500 text-black border border-transparent hover:border-black hover:bg-white transition-colors"
             >
               Book a demo
