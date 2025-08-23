@@ -26,7 +26,7 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-400 to-indigo-500 p-4">
       <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
         <h2 className="text-3xl font-extrabold mb-6 text-center text-gray-800">
-          🔑 Login to <span className="text-indigo-500">Vettio</span>
+           Login to <span className="text-indigo-500">Vettio</span>
         </h2>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
