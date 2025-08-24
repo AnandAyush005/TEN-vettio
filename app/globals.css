@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* ---- TrustedBy marquee styles ---- */
 .trusted-section {
   padding: 4rem 0;
   background: #fff;
@@ -17,7 +16,7 @@
 .marquee-container {
   position: relative;
   width: 100%;
-  overflow: hidden; /* hides overflow */
+  overflow: hidden; 
 }
 
 .marquee-track {
@@ -30,11 +29,11 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 0 2rem;
+  padding: 0 4rem;
   white-space: nowrap;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #374151;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #3c4148;
 }
 
 @keyframes marquee {
@@ -42,7 +41,7 @@
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-30%);
   }
 }
 
