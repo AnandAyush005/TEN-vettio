@@ -5,8 +5,8 @@ import Image from "next/image";
 const sections = [
   {
     title: (
-      <h3 className="text-4xl md:text-5xl font-bold leading-snug">
-        Stop <span className="text-orange-500">Guessing</span> with CVs, Start Seeing with{" "}
+      <h3 className="text-3xl md:text-3xl font-semibold leading-snug">
+        Stop Guessing with CVs, Start Seeing <span className="text-yellow-500"> Videos</span>{" "}
       </h3>
     ),
     text: "Why make hiring decisions based solely on resumes? With us, every candidate you review has completed a video interview, allowing you to assess their expertise, confidence, and cultural fit. Move beyond the paper and hire with confidence.",
@@ -15,7 +15,7 @@ const sections = [
   },
   {
     title: (
-      <h3 className="text-4xl md:text-5xl font-bold leading-snug">
+      <h3 className="text-3xl md:text-3xl font-bold leading-snug">
         Beyond Keywords, Interviews Drive{" "}
         <span className="text-purple-600">Contextual Matches</span>
       </h3>
@@ -26,8 +26,8 @@ const sections = [
   },
   {
     title: (
-      <h3 className="text-4xl md:text-5xl font-bold leading-snug">
-        Interviewed by <span className="text-orange-500">Experts</span>, Recommended for You
+      <h3 className="text-3xl md:text-3xl font-semibold leading-snug">
+        Interviewed by <span className="text-yellow-500">Experts</span>, Recommended for You
       </h3>
     ),
     text: "Every candidate is evaluated by AI with deep domain expertise—not generalist recruiters. Whether it’s finance, sales, or marketing, our AI conducts specialized interviews to ensure only the best reach you.",
@@ -36,7 +36,7 @@ const sections = [
   },
   {
     title: (
-      <h3 className="text-4xl md:text-5xl font-bold leading-snug">
+      <h3 className="text-3xl md:text-3xl font-semibold leading-snug">
         AI Handles <span className="text-purple-600">Scheduling</span>, You Handle Hiring
       </h3>
     ),
@@ -46,8 +46,8 @@ const sections = [
   },
   {
     title: (
-      <h3 className="text-4xl md:text-5xl font-bold leading-snug">
-        Gain <span className="text-orange-500">Deeper Insights</span> with Advanced Candidate Assessments
+      <h3 className="text-3xl md:text-3xl font-semibold leading-snug">
+        Gain <span className="text-yellow-500">Deeper Insights</span> with Advanced Candidate Assessments
       </h3>
     ),
     text: "We provide you with comprehensive candidate profiles, featuring deep insights, detailed resume analysis, and skill evaluations. Based on our AI-led interviews and assessments, our AI evaluates technical expertise, domain knowledge, and problem-solving abilities, giving you a clear, data-driven understanding of each candidate’s strengths and fit for the role.",
@@ -72,9 +72,9 @@ export default function Talent() {
     <section className="w-full bg-white py-20 px-6 md:px-12">
       <div className="max-w-6xl mx-auto text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-bold">
-          Hire Top Talent <span className="text-orange-500">Faster</span>
+          <span className="text-yellow-500">Hire Top Talent </span>Faster
         </h2>
-        <p className="mt-4 text-gray-600 max-w-2xl mx-auto text-lg md:text-xl">
+        <p className="mt-4 text-gray-700 font-semibold max-w-2xl mx-auto text-lg">
           With expert-led AI assessments, we help you identify and hire top talent
           in record time, giving you more time to focus on growing your team.
         </p>

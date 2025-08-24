@@ -29,7 +29,7 @@ const steps = [
   },
   {
     n: 5,
-    t: "Review Your Shortlist with Complete Insights",
+    t: "Review Your Shortlist with Complete ",
     d: "Access comprehensive profiles of your matched candidates, complete with AI-generated insights and interview recordings.",
     img: "https://vettio.com/assets/Images/landingAssetsR/how-it-work-7.svg",
   },
@@ -41,8 +41,8 @@ const steps = [
   },
   {
     n: 7,
-    t: "Review Your Shortlist with Complete Insights",
-    d: "Access comprehensive profiles of your matched candidates, complete with AI-generated insights and interview recordings.",
+    t: "Seamless Interview Setup",
+    d: "We handle the interview arrangements, making it easy for you to connect with your top picks.",
     img: "https://vettio.com/assets/Images/landingAssetsR/how-it-work-7.svg",
   },
 ];
@@ -51,10 +51,10 @@ export default function HowItWorks() {
   return (
     <section className="w-full bg-white">
       <div className="max-w-6xl mx-auto px-6 py-16 md:py-20">
-        <h2 className="text-3xl md:text-4xl font-bold text-center">
+        <h2 className="text-5xl md:text-5xl font-semibold text-center">
           Let’s see how it <span className="text-yellow-500">works</span>
         </h2>
-        <p className="mt-3 text-center text-gray-600">
+        <p className="mt-3 text-center text-gray-700 font-semibold">
           Follow a simple, step-by-step process to experience hiring that’s fast,
           efficient, and tailored to your needs.
         </p>
@@ -79,7 +79,11 @@ export default function HowItWorks() {
                     >
                       <motion.div
                         whileHover={{ scale: 1.05 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 20,
+                        }}
                         className="inline-block"
                       >
                         <Image
@@ -93,14 +97,27 @@ export default function HowItWorks() {
                     </motion.div>
                   )}
 
-                  {/* Text */}
+                  {/* Text Side */}
                   <div
-                    className={`w-1/2 ${
-                      isLeft ? "pl-8 text-left" : "pr-8 text-right order-1"
-                    }`}
+                    className={`w-full md:w-1/2 flex flex-col justify-center mb-6 md:mb-0
+                      ${
+                        isLeft
+                          ? "md:pr-20 md:items-start md:text-right"
+                          : "md:pl-20 md:items-start md:text-left"
+                      }`}
                   >
-                    <h3 className="font-bold text-lg">{s.t}</h3>
-                    <p className="mt-5 text-gray-600 text-sm">{s.d}</p>
+                    <h3
+                      className={`font-semibold text-2xl text-gray-900 
+                        ${isLeft ? "text-right" : "text-left "} `}
+                    >
+                      {s.t}
+                    </h3>
+                    <p
+                      className="mt-4 text-gray-600 leading-relaxed max-w-md 
+                        text-left "
+                    >
+                      {s.d}
+                    </p>
                   </div>
 
                   {/* Left Side Image */}
@@ -114,7 +131,11 @@ export default function HowItWorks() {
                     >
                       <motion.div
                         whileHover={{ scale: 1.05 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 20,
+                        }}
                         className="inline-block"
                       >
                         <Image
@@ -129,10 +150,10 @@ export default function HowItWorks() {
                   )}
 
                   {/* Number circle */}
-                  <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
+                  <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center z-10">
                     <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-white ${
-                        s.n % 2 === 0 ? "bg-purple-600" : "bg-yellow-500"
+                      className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-white ${
+                        s.n % 2 === 0 ? "bg-purple-700" : "bg-yellow-500"
                       }`}
                     >
                       {s.n}
