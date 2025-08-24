@@ -45,7 +45,7 @@ const Footer = () => {
           <div>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
               Stop Guessing, <br /> Start Hiring{" "}
-              <span className="text-yellow-400">Confidently.</span>
+              <span className="text-yellow-500">Confidently.</span>
             </h2>
             <p className="mt-4 text-lg">
               Join us today and see how Vettio can revolutionize your talent search.

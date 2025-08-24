@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const rotatingWords = [
+  "Digital Marketing.",
   "SEO.",
+  "Frontend Development.",
   "Performance Marketing.",
   "Backend Development.",
   "Content Marketing.",
@@ -14,47 +16,60 @@ const rotatingWords = [
   "CRM Marketing.",
 ];
 
-// 👇 Colors for each keyword
 const wordColors = [
-  "text-blue-600",     // SEO
-  "text-indigo-500",   // Performance Marketing
-  "text-black",        // Backend Development
-  "text-green-600",    // Content Marketing
-  "text-pink-600",     // Email Marketing
-  "text-purple-600",   // Mobile Development
-  "text-red-600",      // Digital Strategy
-  "text-indigo-600",   // CRM Marketing
+  "text-yellow-400", 
+  "text-blue-600",     
+  "text-red-600",   
+  "text-blue-600",    
+  "text-yellow-400",   
+  "text-blue-600", 
+  "text-red-600",  
+  "text-blue-600",      
+  "text-yellow-400",   
+  "text-blue-600",
 ];
 
 export default function AnimatedText() {
   const [index, setIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % rotatingWords.length); // 🔄 continuous loop
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
+    let typingSpeed = isDeleting ? 50 : 100; 
+    let timeout: NodeJS.Timeout;
+
+    const currentWord = rotatingWords[index];
+
+    if (!isDeleting && displayedText.length < currentWord.length) {
+      timeout = setTimeout(() => {
+        setDisplayedText(currentWord.substring(0, displayedText.length + 1));
+      }, typingSpeed);
+    } else if (isDeleting && displayedText.length > 0) {
+      timeout = setTimeout(() => {
+        setDisplayedText(currentWord.substring(0, displayedText.length - 1));
+      }, typingSpeed);
+    } else if (!isDeleting && displayedText.length === currentWord.length) {
+      timeout = setTimeout(() => setIsDeleting(true), 1500); 
+    } else if (isDeleting && displayedText.length === 0) {
+      setIsDeleting(false);
+      setIndex((prev) => (prev + 1) % rotatingWords.length);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayedText, isDeleting, index]);
 
   return (
-    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 max-w-5xl mx-auto mb-6 leading-tight text-center">
+    <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 max-w-5xl mx-auto mb-6 leading-tight text-center px-4">
       Get Access To{" "}
-      <span className="text-gray-900">Pre-Vetted Talent</span>{" "}
+      <span className="text-gray-900">Pre-Vetted Talent</span>
+      <br className="hidden md:block" />
       Interviewed And Evaluated By Experts In{" "}
-      <span className="inline-block relative w-auto ml-2">
-        <AnimatePresence mode="wait">
-          <motion.span
-            key={index}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.5 }}
-            className={`font-extrabold ${wordColors[index]}`}
-          >
-            {rotatingWords[index]}
-          </motion.span>
-        </AnimatePresence>
-      </span>
+      <motion.span
+        key={index}
+        className={`font-extrabold ${wordColors[index]} border-r-2 border-black pr-1`}
+      >
+        {displayedText}
+      </motion.span>
     </h1>
   );
 }

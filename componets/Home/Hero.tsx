@@ -7,7 +7,6 @@ import AnimatedText from "./AnimatedText";
 import Image from "next/image";
 import Book from "../book_a_Demo"
 
-
 export default function Hero() { 
   
   const router = useRouter();
@@ -19,6 +18,7 @@ export default function Hero() {
 
   return (
     <header className="w-full">
+      {/* Navbar */}
       <div className="fixed top-0 left-0 w-full z-50 bg-white border-b border-indigo-200">
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -39,35 +39,42 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* Hero Section */}
       <section className="w-full bg-gray-50 pt-32 pb-24 border-b border-indigo-100 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border border-gray-300 bg-white text-sm font-medium text-gray-800 shadow-sm">
-
           <Sparkle className="w-4 h-4 text-blue-500" />
           <span>AI-Powered Domain Expert Interviewing</span>
         </div>
 
         <AnimatedText />
+
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Book />
         </div>
-        <div className="mt-4 flex justify-center items-center gap-4 text-sm">
-              <span className="flex items-center gap-1">
-                <Check className="w-4 h-4 text-gray-400" /> Free
-              </span>
-              <span className="flex items-center gap-1">
-                <Check className="w-4 h-4 text-gray-400" /> No credit card needed
-              </span>
-            </div>
 
-       <div className="mt-15 mx-auto max-w-2xl bg-gradient-to-br from-yellow-50 to-purple-50 shadow-md rounded-2xl">
-      <Image
-      src="https://vettio.com/assets/Images/landingAssetsR/firstFold.svg"
-      alt="Hero visual"
-      width={800}
-      height={450}
-      className="w-full h-auto rounded-3xl    object-contain"
-      />
-      </div>
+        <div className="mt-4 flex justify-center items-center gap-4 text-sm">
+          <span className="flex items-center gap-1">
+            <Check className="w-4 h-4 text-gray-400" /> Free
+          </span>
+          <span className="flex items-center gap-1">
+            <Check className="w-4 h-4 text-gray-400" /> No credit card needed
+          </span>
+        </div>
+
+        {/* Image with Gradient Glow */}
+        <div className="mt-16 relative flex items-center justify-center">
+          {/* Gradient Glow */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400/20 to-purple-500/20 blur-3xl" />
+
+          {/* Image */}
+          <Image
+            src="https://vettio.com/assets/Images/landingAssetsR/firstFold.svg"
+            alt="Hero visual"
+            width={800}
+            height={450}
+            className="relative rounded-3xl  "
+          />
+        </div>
       </section>
     </header>
   );
