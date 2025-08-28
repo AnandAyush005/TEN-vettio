@@ -16,7 +16,7 @@ export default function Book() {
     <section>
       <button
         onClick={() => setOpen(true)}
-        className="text-sm font-GothamMedium bg-amber-500 text-black hover:bg-white hover:text-black border-amber-500 hover:border-black rounded-lg border-2 w-[159px] h-[48px] Mobile:w-full Mobile:h-[45px] hover:border-2 transform transition ease-in-out duration-400 hover:shadow-md"
+        className="text-sm font-GothamMedium bg-yellow-500 text-black hover:bg-white hover:text-black border-yellow-500 hover:border-black rounded-lg border-2 w-[159px] h-[48px] Mobile:w-full Mobile:h-[45px] hover:border-2 transform transition ease-in-out duration-400 hover:shadow-md"
       >
         Book a demo
       </button>

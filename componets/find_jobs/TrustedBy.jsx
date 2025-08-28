@@ -43,7 +43,7 @@ const TrustedBy = () => {
         
         {/* Continuous Scrolling Container */}
         <div className="relative">
-          <div className="flex animate-scroll">
+          <div className="flex marquee-track">
             {/* First set of company logos */}
             {companies.map((company, index) => (
               <div key={`first-${index}`} className="flex-shrink-0 mx-12 flex items-center justify-center">

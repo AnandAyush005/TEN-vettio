@@ -1,30 +1,39 @@
 import React from 'react';
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import Book from "../book_a_Demo"
+import Image from "next/image";
 
 const Header = () => {
+    
+  const router = useRouter();
+  
+  const handleSignOut = async () => {
+    await signOut({ redirect: false }); // don't let next-auth redirect
+    router.push("/login");              // manually redirect
+  };
+  
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg py-4">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">V</span>
-            </div>
-            <span className="text-2xl font-bold text-gray-800">VETTIO</span>
+      <div className="fixed top-0 left-0 w-full z-50 bg-white border-b border-indigo-200">
+        <div className="max-w-7xl mx-auto py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Image
+              src="https://vettio.com/assets/Images/logo.svg"
+              alt="Vettio Logo"
+              width={120}
+              height={40}
+              className="h-10 w-auto"
+            />
           </div>
           
-          {/* Action Buttons */}
-          <div className="flex items-center space-x-3">
-            <button className="px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-              Hire Talent
-            </button>
-            <button className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors">
-              Join Waitlist
-            </button>
-          </div>
+          <nav className="hidden sm:flex items-center gap-6 text-sm font-medium">
+            <a href="/find_jobs" className="px-8 py-3 rounded-lg bg-yellow-500 text-black border border-transparent hover:border-black hover:bg-white transition-colors">Find Jobs</a>
+            <a onClick={handleSignOut} className="px-8 py-3 rounded-lg bg-yellow-500 text-black border border-transparent hover:border-black hover:bg-white transition-colors">Sign Out</a>
+            <Book />
+          </nav>
         </div>
       </div>
-    </header>
+
   );
 };
 
