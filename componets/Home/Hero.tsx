@@ -14,7 +14,7 @@ export default function Hero() {
 
   const handleSignOut = async () => {
     await signOut({ redirect: false }); // don't let next-auth redirect
-    router.push("/login");              // manually redirect
+    router.push("/");              // manually redirect
   };
 
   return (
