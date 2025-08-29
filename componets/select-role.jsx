@@ -4,10 +4,18 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function SelectRole() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
   const [role, setRole] = useState("");
   const [loading, setLoading] = useState(false);
+
+  if (status === "loading") {
+    return <p className="text-center mt-10">Loading session...</p>;
+  }
+
+  if (!session) {
+    return <p className="text-center mt-10">You must be logged in to set a role.</p>;
+  }
 
   const handleSave = async () => {
     if (!role) {
