@@ -3,13 +3,22 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Signup() {
-  const [form, setForm] = useState({ username: "", email: "", password: "", role: "" });
-  const [errors, setErrors] = useState(""); // For showing backend errors
+  const [form, setForm] = useState({
+    username: "",
+    email: "",
+    password: "",
+    role: "",
+    age: "",
+    dob: "",
+    country: "",
+    education: "",
+  });
+  const [errors, setErrors] = useState("");
   const router = useRouter();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    setErrors(""); // Clear errors when user types
+    setErrors("");
   };
 
   const handleSubmit = async (e) => {
@@ -24,9 +33,8 @@ export default function Signup() {
     const data = await res.json();
 
     if (res.ok) {
-      router.push("/login");
+      router.push("/");
     } else {
-      // Display backend validation errors
       setErrors(data.error || "Signup failed");
     }
   };
@@ -43,57 +51,29 @@ export default function Signup() {
         )}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <input
-            name="username"
-            placeholder="Username"
-            onChange={handleChange}
-            value={form.username}
-            required
-            className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"
-          />
-          <input
-            name="email"
-            type="email"
-            placeholder="Email"
-            onChange={handleChange}
-            value={form.email}
-            required
-            className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"
-          />
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            onChange={handleChange}
-            value={form.password}
-            required
-            className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"
-          />
-          <select
-            name="role"
-            onChange={handleChange}
-            value={form.role}
-            required
-            className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"
-          >
+          <input name="username" placeholder="Username" onChange={handleChange} value={form.username} required className="px-4 py-2 border rounded-md" />
+          <input name="email" type="email" placeholder="Email" onChange={handleChange} value={form.email} required className="px-4 py-2 border rounded-md" />
+          <input name="password" type="password" placeholder="Password" onChange={handleChange} value={form.password} required className="px-4 py-2 border rounded-md" />
+          <select name="role" onChange={handleChange} value={form.role} required className="px-4 py-2 border rounded-md">
             <option value="">Select Role</option>
             <option value="recruiter">Recruiter</option>
             <option value="jobseeker">Jobseeker</option>
           </select>
 
-          <button
-            type="submit"
-            className="bg-indigo-500 text-white py-2 rounded-md hover:bg-indigo-600 transition"
-          >
+          {/* New fields */}
+          <input name="age" type="number" placeholder="Age" onChange={handleChange} value={form.age} required className="px-4 py-2 border rounded-md" />
+          <input name="dob" type="date" onChange={handleChange} value={form.dob} required className="px-4 py-2 border rounded-md" />
+          <input name="country" placeholder="Country" onChange={handleChange} value={form.country} required className="px-4 py-2 border rounded-md" />
+          <input name="education" placeholder="Education" onChange={handleChange} value={form.education} required className="px-4 py-2 border rounded-md" />
+
+          <button type="submit" className="bg-indigo-500 text-white py-2 rounded-md hover:bg-indigo-600 transition">
             Sign Up
           </button>
         </form>
 
         <p className="text-center text-gray-500 mt-4">
           Already have an account?{" "}
-          <a href="/login" className="text-indigo-500 hover:underline">
-            Login
-          </a>
+          <a href="/" className="text-indigo-500 hover:underline">Login</a>
         </p>
       </div>
     </div>
