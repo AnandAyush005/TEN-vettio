@@ -12,7 +12,7 @@ const companies = [
   {
     name: "Zignaly",
     logo: "https://vettio.com/assets/Images/landingAssetsR/zignaly-logo.svg",
-  },
+  }, 
   {
     name: "Wellows",
     logo: "https://vettio.com/assets/Images/landingAssetsR/wellows-logo.svg",
