@@ -30,7 +30,7 @@ export default function LoginForm() {
       callbackUrl: "/",
     });
 
-    if (!res.error) router.push("/");
+    if (!res.error) router.push("/Home");
     else alert("Login failed: " + res.error);
   };
 
