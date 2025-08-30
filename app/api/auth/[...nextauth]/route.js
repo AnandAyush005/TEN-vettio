@@ -56,27 +56,34 @@ export const authOptions = {
   async signIn({ user, account, profile }) {
     await connectDB();
 
-    let existingUser = await User.findOne({ email: user.email });
+    // let existingUser = await User.findOne({ email: user.email });
 
-    if (!existingUser) {
-      // Create new user for OAuth
-      const newUser = new User({
-        username: profile?.name || user.name,
-        email: user.email,
-        image: user.image,
-        provider: account.provider,
-        role: null, // must choose later via /set-role
-      });
+    // if (!existingUser) {
+    //   // Create new user for OAuth
+    //   const newUser = new User({
+    //     username: profile?.name || user.name,
+    //     email: user.email,
+    //     image: user.image,
+    //     provider: account.provider,
+    //     role: null, // must choose later via /set-role
+    //   });
 
-      await newUser.save({ validateBeforeSave: false });
+    //   await newUser.save({ validateBeforeSave: false });
 
-      // Mark user as new
-      user.isNewUser = true;
-    } else {
-      user.isNewUser = false;
-    }
+    //   // Mark user as new
+    //   user.isNewUser = true;
+    // } else {
+    //   user.isNewUser = false;
+    // }
+    const existingUser = await User.findOne({ email: user.email });
 
-    return true;
+  if (!existingUser) {
+    // 🚨 Don't create user yet → redirect to /select-role
+    return `/set-role?email=${encodeURIComponent(user.email)}&provider=${account.provider}&name=${encodeURIComponent(user.name || profile?.name)}`;
+  }
+
+  return true; // Returning user → proceed
+
   },
 
   async jwt({ token, user }) {
@@ -113,13 +120,23 @@ export const authOptions = {
     return session;
   },
 
-  async redirect({ baseUrl, token }) {
-    // 🚀 New users or users with no role → go to /set-role
-    if (token?.isNewUser || !token?.role) {
-      return `${baseUrl}/set-role`;
-    }
+  // async redirect({ baseUrl, token }) {
+  //   // 🚀 New users or users with no role → go to /set-role
+  //   console.log("Redirecting user... : "+baseUrl+"-"+token)
+  //   if (token?.isNewUser || !token?.role) {
+  //     return `${baseUrl}/set-role`;
+  //   }
+  //   return baseUrl;
+  // },
+
+  async redirect({ url, baseUrl }) {
+    // If signIn returned a relative path like /select-role → redirect there
+    if (url.startsWith("/")) return `${baseUrl}${url}`;
+    if (new URL(url).origin === baseUrl) return url;
     return baseUrl;
   },
+
+
 },
 
   pages: {
