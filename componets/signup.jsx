@@ -24,6 +24,19 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const birthDate = new Date(form.dob);
+    const today = new Date();
+    let calculatedAge = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      calculatedAge--; // adjust if birthday hasn't occurred yet this year
+    }
+
+    if (parseInt(form.age) !== calculatedAge) {
+      setErrors(`Age (${form.age}) and DOB (${form.dob}) do not match. Calculated age: ${calculatedAge}`);
+      return; // stop submission
+    }
+
     const res = await fetch("/api/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
