@@ -46,7 +46,7 @@ export default function Signup() {
     const data = await res.json();
 
     if (res.ok) {
-      router.push("/login");
+      router.push("/");
     } else {
       setErrors(data.error || "Signup failed");
     }
@@ -86,7 +86,7 @@ export default function Signup() {
 
         <p className="text-center text-gray-500 mt-4">
           Already have an account?{" "}
-          <a href="/login" className="text-indigo-500 hover:underline">Login</a>
+          <a href="/" className="text-indigo-500 hover:underline">Login</a>
         </p>
       </div>
     </div>
