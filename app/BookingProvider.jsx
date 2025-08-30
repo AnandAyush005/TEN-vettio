@@ -15,7 +15,6 @@ export function BookingProvider({ children }) {
 
       cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
 
-      // Attach listeners ONCE
       cal("on", {
         action: "bookingSuccessful",
         callback: (event) => {
