@@ -4,7 +4,7 @@ import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import DiscordProvider from "next-auth/providers/discord";
 import bcrypt from "bcrypt";
-import {connectDB} from "../../../lib/DbConnection.js"
+import { connectDB } from "../../../lib/DbConnection.js";
 import User from "../../../models/User.js";
 
 export const authOptions = {
@@ -19,7 +19,7 @@ export const authOptions = {
 
         const isPasswordValid = await bcrypt.compare(
           credentials.password,
-          user.password
+          user.password,
         );
         if (!isPasswordValid) throw new Error("Invalid password");
 
@@ -70,7 +70,12 @@ export const authOptions = {
         });
         await existingUser.save();
       } else {
-        console.log("👤 Existing user logged in:", existingUser.email, "role:", existingUser.role);
+        console.log(
+          "👤 Existing user logged in:",
+          existingUser.email,
+          "role:",
+          existingUser.role,
+        );
       }
 
       return true;
@@ -83,6 +88,7 @@ export const authOptions = {
         const dbUser = await User.findOne({ email: user.email });
         token.id = dbUser._id.toString();
         token.role = dbUser.role;
+        token.name = dbUser.username;
       }
       return token;
     },
@@ -96,6 +102,7 @@ export const authOptions = {
         id: token.id,
         email: session.user.email,
         role: dbUser?.role || null,
+        name: token.name || dbUser?.username,
       };
       return session;
     },
