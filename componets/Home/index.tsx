@@ -7,9 +7,12 @@ import Footer from './Footer';
 import Magic from './Magic';
 import Talent from './Talent';
 
+import { BookingProvider } from "../../app/BookingProvider";
+
 
 export default function HomePage() {
   return (
+    <BookingProvider>
     <main className="flex flex-col items-center justify-center">
       <Hero />
       <TrustedBy />
@@ -19,5 +22,6 @@ export default function HomePage() {
       <Community />
       <Footer />
     </main>
+    </BookingProvider>
   );
 }

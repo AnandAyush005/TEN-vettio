@@ -5,6 +5,7 @@ import Book from "../book_a_Demo"
 import Image from "next/image";
 import {User, Menu, X  } from "lucide-react";
 import { useState } from "react";
+import BookButton from '../book_a_Demo';
 
 const Header = ({page}) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,15 +46,15 @@ const Header = ({page}) => {
 
             <a
               href="#"
-              className="px-8 py-3 rounded-lg bg-yellow-500 text-black border-2 border-transparent hover:border-black hover:bg-white transition-colors"
+              className="px-8 py-3 rounded-lg bg-yellow-500 text-black border-2 border-transparent hover:border-black hover:bg-white transition-colors text-center flex items-center justify-center"
               onClick={handleSignOut}
             >
               Sign Out
             </a>
-            <Book />
+            <BookButton />
 
             <a
-              href="#"
+              href="/profile"
               className="w-12 h-12 flex items-center justify-center rounded-full border-3 border-yellow-500 hover:border-black transition-colors"
             >
               <User className="w-9 h-9 text-gray-600 hover:text-yellow-500" />
@@ -76,18 +77,18 @@ const Header = ({page}) => {
           <div className="sm:hidden bg-white border-t border-gray-200 px-6 py-4 flex flex-col gap-4 text-sm font-medium">
             <a
               href="/find_jobs"
-              className="px-6 py-2 rounded-lg bg-white text-black border-2 border-black hover:bg-yellow-500 hover:border-transparent transition-colors"
+              className="px-8 py-3 rounded-lg bg-yellow-500 text-black border-2 border-transparent hover:border-black hover:bg-white transition-colors text-center flex items-center justify-center"
             >
               Find Jobs
             </a>
             <a
-              className="px-6 py-2 rounded-lg bg-yellow-500 text-black border-2 border-transparent hover:border-black hover:bg-white transition-colors"
+              className="px-8 py-3 rounded-lg bg-yellow-500 text-black border-2 border-transparent hover:border-black hover:bg-white transition-colors text-center flex items-center justify-center"
               onClick={handleSignOut}
             >
              Sign out
             </a>
-            <Card />
-            <a href="#" className="flex items-center gap-2">
+            <BookButton />
+            <a href="/profile" className="flex items-center gap-2 w-full justify-center">
               <User className="w-8 h-8 text-gray-700 hover:text-yellow-500 cursor-pointer" />
               <span>Profile</span>
             </a>

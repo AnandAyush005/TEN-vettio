@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import { Check, X } from "lucide-react";
@@ -18,7 +18,8 @@ const Footer = () => {
               <span className="text-yellow-500">Confidently.</span>
             </h2>
             <p className="mt-4 text-lg">
-              Join us today and see how Vettio can revolutionize your talent search.
+              Join us today and see how Vettio can revolutionize your talent
+              search.
             </p>
           </div>
 
@@ -29,7 +30,8 @@ const Footer = () => {
                 <Check className="w-4 h-4 text-green-400" /> Free
               </span>
               <span className="flex items-center gap-1">
-                <Check className="w-4 h-4 text-green-400" /> No credit card needed
+                <Check className="w-4 h-4 text-green-400" /> No credit card
+                needed
               </span>
             </div>
           </div>
@@ -51,9 +53,15 @@ const Footer = () => {
           <div>
             <h3 className="font-bold mb-4">Quick Links</h3>
             <div className="grid grid-cols-2 gap-4">
-              <Link href="#" className="hover:underline">LinkedIn</Link>
-              <Link href="#" className="hover:underline">X (Twitter)</Link>
-              <Link href="#" className="hover:underline">Slack</Link>
+              <Link href="#" className="hover:underline">
+                LinkedIn
+              </Link>
+              <Link href="#" className="hover:underline">
+                X (Twitter)
+              </Link>
+              <Link href="#" className="hover:underline">
+                Slack
+              </Link>
             </div>
           </div>
         </div>
@@ -62,8 +70,13 @@ const Footer = () => {
       <div className="bg-black text-gray-300 text-sm py-6 px-6 flex flex-col md:flex-row justify-between items-center">
         <p className="mb-4 md:mb-0">
           © 2025 Vettio. All rights reserved ·{" "}
-          <Link href="#" className="hover:underline">Privacy Policy</Link> ·{" "}
-          <Link href="#" className="hover:underline">Terms and Conditions</Link>
+          <Link href="#" className="hover:underline">
+            Privacy Policy
+          </Link>{" "}
+          ·{" "}
+          <Link href="#" className="hover:underline">
+            Terms and Conditions
+          </Link>
         </p>
         <div className="flex items-center gap-4">
           <span>Social Media:</span>

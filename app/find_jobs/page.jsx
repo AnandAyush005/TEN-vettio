@@ -11,9 +11,11 @@ import ToolboxSection from '../../componets/find_jobs/ToolboxSection';
 import Community from '../../componets/Home/Community.tsx';
 import PurpleCTASection from '../../componets/find_jobs/PurpleCTASection';
 import Footer from '../../componets/find_jobs/Footer';
+import { BookingProvider } from '../BookingProvider';
 
 function App() {
   return (
+    <BookingProvider>
     <div className="App">
       <Header />
       <HeroSection />
@@ -27,6 +29,7 @@ function App() {
       <PurpleCTASection />
       <Footer />
     </div>
+    </BookingProvider>
   );
 }
 

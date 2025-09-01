@@ -3,7 +3,7 @@ import React from "react";
 import { Sparkle , Check} from "lucide-react";
 import AnimatedText from "./AnimatedText";
 import Image from "next/image";
-import Book from "../book_a_Demo"
+import Book from "../book_a_Demo";
 import Header from "../find_jobs/Header";
 
 
