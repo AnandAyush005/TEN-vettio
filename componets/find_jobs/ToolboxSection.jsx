@@ -5,7 +5,7 @@ const ToolboxSection = () => {
     {
       icon: '💻',
       title: 'Interview Prep Tool',
-      description: 'Get prepared with a curated list of questions. Supported by our domain-expert AI interview bot, tailored to the role you\'re targeting.',
+      description: 'Prepare with a curated question list, powered by our expert AI interview bot tailored to your target role.',
       cta: 'Join Waitlist',
       checkmark: 'Unlock the best AI-powered domain expert interview bot.',
       illustration: 'Person at desk with laptop'
