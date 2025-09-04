@@ -19,7 +19,7 @@ export function BookingProvider({ children }) {
           action: "bookingSuccessful",
           callback: async (event) => {
             console.log("Booking successful:", event.detail);
-
+            toast.success("Booking successfull")
             try {
               await fetch("/api/save-booking", {
                 method: "POST",
