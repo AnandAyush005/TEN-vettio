@@ -14,7 +14,8 @@ export default function Profile() {
 
   const { data: session, status } = useSession();
 
-  if (status === "loading") return <p className="text-center mt-10">Loading...</p>;
+  if (status === "loading")
+    return <p className="text-center mt-10">Loading...</p>;
   if (!session) return <p className="text-center mt-10">Not signed in</p>;
 
   return (
@@ -34,16 +35,25 @@ export default function Profile() {
           </div>
 
           {/* User Info */}
-          <h1 className="text-2xl font-bold mt-4">{session.user.name}</h1>
-          <p className="text-gray-600">{session.user.email}</p>
+          <h3 className="text-2xl font-bold mt-4">
+            Name: {session.user.username}
+          </h3>
+          <p className="text-gray-600">Email: {session.user.email}</p>
+          <p className="text-gray-600">Age: {session.user.age}</p>
+          <p className="text-gray-600">Country: {session.user.country}</p>
+
+          <p className="text-gray-600">Education: {session.user.education}</p>
+
           <span className="inline-block mt-2 px-3 py-1 text-sm bg-indigo-100 text-indigo-600 rounded-full">
             {session.user.role || "No role assigned"}
           </span>
 
           {/* Company / Platform Description */}
           <p className="mt-4 text-gray-700 text-sm leading-relaxed">
-            Vettio is an <span className="font-semibold">AI recruitment platform</span> 
-            that finds, evaluates, interviews and matches the best talent for employers.
+            Vettio is an{" "}
+            <span className="font-semibold">AI recruitment platform</span>
+            that finds, evaluates, interviews and matches the best talent for
+            employers.
           </p>
 
           {/* Actions */}
