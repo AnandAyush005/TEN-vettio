@@ -16,12 +16,21 @@ export function BookingProvider({ children }) {
       cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
 
       cal("on", {
-        action: "bookingSuccessful",
-        callback: (event) => {
-          toast.success("Meeting scheduled successfully!");
-          console.log("Booking successful:", event);
-        },
-      });
+          action: "bookingSuccessful",
+          callback: async (event) => {
+            console.log("Booking successful:", event.detail);
+
+            try {
+              await fetch("/api/save-booking", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(event.detail), // ✅ send full response
+              });
+            } catch (error) {
+              console.error("Error saving booking:", error);
+            }
+          },
+        });
 
       cal("on", {
         action: "bookingFailed",
