@@ -7,7 +7,6 @@ import Image from "next/image";
 
 import Book from "../book_a_Demo";
 
-<<<<<<< HEAD
 const VettioLogo = () => (
   <svg
     width="110"
@@ -42,8 +41,6 @@ const VettioLogo = () => (
   </svg>
 );
 
-=======
->>>>>>> 9f61f420b025da5af59e58bc0b63da909dc1be19
 const Footer = () => {
   return (
     <footer className="w-full">
@@ -76,13 +73,6 @@ const Footer = () => {
 
         <div className="mt-20 pt-10 border-t border-white/20 grid md:grid-cols-3 gap-8">
           <div className="flex flex-col gap-4">
-<<<<<<< HEAD
-            <VettioLogo />
-            <Link
-              href="mailto:contact@vettio.com"
-              className="text-white hover:underline"
-            >
-=======
             <Image
                   src="https://vettio.com/assets/Images/logo.svg"
                   alt="Vettio Logo"
@@ -91,7 +81,6 @@ const Footer = () => {
                   className="w-40"
                 />
             <Link href="mailto:contact@vettio.com" className="text-white hover:underline">
->>>>>>> 9f61f420b025da5af59e58bc0b63da909dc1be19
               contact@vettio.com
             </Link>
           </div>

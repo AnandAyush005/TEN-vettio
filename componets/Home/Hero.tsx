@@ -1,30 +1,21 @@
 "use client";
 import React from "react";
-<<<<<<< HEAD
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Sparkle, Check } from "lucide-react";
-=======
-import { Sparkle , Check} from "lucide-react";
->>>>>>> 9f61f420b025da5af59e58bc0b63da909dc1be19
 import AnimatedText from "./AnimatedText";
 import Image from "next/image";
 import Book from "../book_a_Demo";
 import Header from "../find_jobs/Header";
+  
 
-<<<<<<< HEAD
-export default function Hero() {
+export default function Hero() { 
   const router = useRouter();
 
   const handleSignOut = async () => {
     await signOut({ redirect: false }); // don't let next-auth redirect
     router.push("/"); // manually redirect
   };
-=======
-
-export default function Hero() { 
-
->>>>>>> 9f61f420b025da5af59e58bc0b63da909dc1be19
 
   return (
     <header className="w-full">
