@@ -1,4 +1,5 @@
 import React from 'react';
+import { MainImg } from '../Home/Hero';
 
 const HeroSection = () => {
   return (
@@ -27,19 +28,11 @@ const HeroSection = () => {
         </div>
 
         {/* VETTIO FirstFold Image */}
-        <div className="max-w-5xl mx-auto mb-8">
-          <div className="text-center">
-            <img 
-              src="https://vettio.com/assets/Images/landingAssets/firstFold.svg" 
-              alt="VETTIO Platform Interface" 
-              className="w-full h-auto max-w-4xl mx-auto rounded-lg shadow-2xl transform hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-        </div>
+        <MainImg />
 
         {/* Call to Action */}
         <div className="text-center">
-          <button className="px-8 py-4 bg-orange-500 text-white text-xl font-semibold rounded-lg hover:bg-orange-600 transition-colors mb-4">
+          <button className="px-8 py-4 mt-4 bg-orange-500 text-white text-xl font-semibold rounded-lg hover:bg-orange-600 transition-colors mb-4">
             Join Waitlist
           </button>
           
@@ -61,3 +54,6 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
+// https://vettio.com/assets/Images/landingAssets/firstFold.svg
+// https://vettio.com/assets/Images/landingAssetsR/firstFold.svg -> home

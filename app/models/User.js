@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import validator from "validator"; // npm install validator
+import validator from "validator";
 
 const UserSchema = new mongoose.Schema({
   username: {
@@ -18,21 +18,39 @@ const UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, "Password is required"],
     minlength: [8, "Password must be at least 8 characters"],
   },
   role: {
     type: String,
-    enum: {
-      values: ["recruiter", "jobseeker"],
-      message: "Role must be either recruiter or jobseeker",
-    },
+    enum: ["recruiter", "jobseeker"],
     required: [true, "Role is required"],
+  },
+  age: {
+    type: Number,
+    required: [true, "Age is required"],
+    min: [18, "Age must be at least 18"],
+    max: [100, "Age must be less than 100"],
+  },
+  dob: {
+    type: Date,
+    required: [true, "Date of Birth is required"],
+  },
+  country: {
+    type: String,
+    required: [true, "Country is required"],
+  },
+  education: {
+    type: String,
+    required: [true, "Education is required"],
   },
   provider: {
     type: String,
-    default: "credentials", // google/github/discord/credentials
+    default: "credentials",
   },
+
+  // ✅ Add these for forgot/reset password
+  resetToken: String,
+  resetTokenExpiry: Date,
 });
 
 export default mongoose.models.User || mongoose.model("User", UserSchema);

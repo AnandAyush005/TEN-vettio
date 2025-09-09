@@ -41,14 +41,11 @@ export default function Magic() {
         <div className="mt-16 grid md:grid-cols-2 gap-16">
           {steps.map((s) => (
             <div key={s.n} className="flex flex-col gap-6">
-              {/* Icon centered */}
               <div className="flex justify-center">
                 <div className="w-20 h-20 flex items-center justify-center rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-500 text-white shadow-xl">
                   {s.icon}
                 </div>
               </div>
-
-              {/* Number + Line + Content */}
               <div className="flex items-start gap-6">
                 <div className="flex items-center gap-4">
                   <span className="text-8xl font-bold text-purple-600">{s.n}</span>

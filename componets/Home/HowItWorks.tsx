@@ -51,7 +51,7 @@ export default function HowItWorks() {
   return (
     <section className="w-full bg-white">
       <div className="max-w-6xl mx-auto px-6 py-16 md:py-20">
-        <h2 className="text-5xl md:text-5xl font-semibold text-center">
+        <h2 className="text-4xl sm:text-5xl font-semibold text-center">
           Let’s see how it <span className="text-yellow-500">works</span>
         </h2>
         <p className="mt-3 text-center text-gray-700 font-semibold">
@@ -60,22 +60,20 @@ export default function HowItWorks() {
         </p>
 
         <div className="relative mt-16">
-          {/* center timeline line */}
-          <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-0.5 bg-gray-300"></div>
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-0.5 bg-gray-300"></div>
 
           <div className="space-y-16">
             {steps.map((s, i) => {
               const isLeft = i % 2 === 0;
               return (
-                <div key={s.n} className="relative flex items-center">
-                  {/* Right Side Image */}
+                <div key={s.n} className="relative flex flex-col md:flex-row items-center">
                   {!isLeft && (
                     <motion.div
                       initial={{ opacity: 0, x: -100 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.6, ease: "easeOut" }}
                       viewport={{ once: true }}
-                      className="w-1/2 flex justify-center"
+                      className="w-full md:w-1/2 flex justify-center mb-6 md:mb-0"
                     >
                       <motion.div
                         whileHover={{ scale: 1.05 }}
@@ -96,38 +94,36 @@ export default function HowItWorks() {
                       </motion.div>
                     </motion.div>
                   )}
-
-                  {/* Text Side */}
                   <div
-                    className={`w-full md:w-1/2 flex flex-col justify-center mb-6 md:mb-0
-                      ${
-                        isLeft
-                          ? "md:pr-20 md:items-start md:text-right"
-                          : "md:pl-20 md:items-start md:text-left"
-                      }`}
+                    className={`w-full md:w-1/2 flex flex-col justify-center
+                      ${isLeft ? "md:pr-20 md:items-start md:text-right" : "md:pl-20 md:items-start md:text-left"}`}
                   >
-                    <h3
-                      className={`font-semibold text-2xl text-gray-900 
-                        ${isLeft ? "text-right" : "text-left "} `}
-                    >
-                      {s.t}
-                    </h3>
-                    <p
-                      className="mt-4 text-gray-600 leading-relaxed max-w-md 
-                        text-left "
-                    >
+                    <div className="flex items-center gap-3 md:block">
+                      <div
+                        className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold text-white
+                          md:absolute md:left-1/2 md:-translate-x-1/2 z-10
+                          ${s.n % 2 === 0 ? "bg-purple-700" : "bg-yellow-500"}`}
+                      >
+                        {s.n}
+                      </div>
+                      <h3
+                        className={`font-semibold text-xl sm:text-2xl text-gray-900 
+                          ${isLeft ? "text-right md:text-right" : "text-left md:text-left"}`}
+                      >
+                        {s.t}
+                      </h3>
+                    </div>
+                    <p className="mt-4 text-gray-600 leading-relaxed max-w-md text-left">
                       {s.d}
                     </p>
                   </div>
-
-                  {/* Left Side Image */}
                   {isLeft && (
                     <motion.div
                       initial={{ opacity: 0, x: 100 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.6, ease: "easeOut" }}
                       viewport={{ once: true }}
-                      className="w-1/2 flex justify-center order-2"
+                      className="w-full md:w-1/2 flex justify-center mt-6 md:mt-0 order-2 md:order-none"
                     >
                       <motion.div
                         whileHover={{ scale: 1.05 }}
@@ -148,17 +144,6 @@ export default function HowItWorks() {
                       </motion.div>
                     </motion.div>
                   )}
-
-                  {/* Number circle */}
-                  <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center z-10">
-                    <div
-                      className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-white ${
-                        s.n % 2 === 0 ? "bg-purple-700" : "bg-yellow-500"
-                      }`}
-                    >
-                      {s.n}
-                    </div>
-                  </div>
                 </div>
               );
             })}

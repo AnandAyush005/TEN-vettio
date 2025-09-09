@@ -1,3 +1,5 @@
+// /app/api/auth/[...nextauth]/route.js (App Router style)
+
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
@@ -9,7 +11,6 @@ import User from "../../../models/User.js";
 
 export const authOptions = {
   providers: [
-    // Credentials login
     CredentialsProvider({
       name: "Credentials",
       async authorize(credentials) {
@@ -32,19 +33,16 @@ export const authOptions = {
       },
     }),
 
-    // Google OAuth
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
 
-    // GitHub OAuth
     GitHubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
     }),
 
-    // Discord OAuth
     DiscordProvider({
       clientId: process.env.DISCORD_CLIENT_ID,
       clientSecret: process.env.DISCORD_CLIENT_SECRET,
@@ -53,11 +51,9 @@ export const authOptions = {
   ],
 
   callbacks: {
-    // Runs at login (OAuth or credentials)
     async signIn({ user, account, profile }) {
       await connectDB();
-
-      let existingUser = await User.findOne({ email: user.email });
+      const existingUser = await User.findOne({ email: user.email });
 
       if (!existingUser) {
         // Create new user for OAuth logins
@@ -76,43 +72,47 @@ export const authOptions = {
           "role:",
           existingUser.role,
         );
+        // Redirect to /set-role for new OAuth users
+        return `/set-role?email=${encodeURIComponent(user.email)}&provider=${account.provider}&name=${encodeURIComponent(user.name || profile?.name)}`;
       }
 
-      return true;
+      return true; // Existing user → proceed
     },
 
-    // Attach DB data into JWT
     async jwt({ token, user }) {
       await connectDB();
       if (user) {
         const dbUser = await User.findOne({ email: user.email });
         token.id = dbUser._id.toString();
+        token.email = dbUser.email;
+        token.username = dbUser.username;
+        token.age = dbUser.age;
+        token.country = dbUser.country;
+        token.education = dbUser.education;
         token.role = dbUser.role;
-        token.name = dbUser.username;
+        token.isNewUser = user.isNewUser ?? false;
       }
       return token;
     },
 
-    //Attach DB role into session
     async session({ session, token }) {
-      await connectDB();
-      const dbUser = await User.findOne({ email: session.user.email });
-
       session.user = {
         id: token.id,
-        email: session.user.email,
-        role: dbUser?.role || null,
-        name: token.name || dbUser?.username,
+        email: token.email,
+        username: token.username,
+        age: token.age,
+        country: token.country,
+        education: token.education,
+        role: token.role,
+        isNewUser: token.isNewUser,
       };
       return session;
     },
 
-    // Redirect after login
-    async redirect({ baseUrl, url }) {
-      if (url === "/") {
-        return `${baseUrl}/dashboard`;
-      }
-      return url.startsWith(baseUrl) ? url : baseUrl;
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
     },
   },
 
@@ -123,6 +123,6 @@ export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 };
 
-//  App Router style
+// ✅ App Router export
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
