@@ -20,7 +20,7 @@ export const authOptions = {
 
         const isPasswordValid = await bcrypt.compare(
           credentials.password,
-          user.password,
+          user.password
         );
         if (!isPasswordValid) throw new Error("Invalid password");
 
@@ -56,22 +56,6 @@ export const authOptions = {
       const existingUser = await User.findOne({ email: user.email });
 
       if (!existingUser) {
-        // Create new user for OAuth logins
-        existingUser = new User({
-          username: profile?.name || user.name,
-          email: user.email,
-          image: user.image,
-          provider: account.provider,
-          role: null, //  must choose later via /set-role
-        });
-        await existingUser.save();
-      } else {
-        console.log(
-          "👤 Existing user logged in:",
-          existingUser.email,
-          "role:",
-          existingUser.role,
-        );
         // Redirect to /set-role for new OAuth users
         return `/set-role?email=${encodeURIComponent(user.email)}&provider=${account.provider}&name=${encodeURIComponent(user.name || profile?.name)}`;
       }
