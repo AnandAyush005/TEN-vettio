@@ -109,4 +109,4 @@ export const authOptions = {
 
 // ✅ App Router export
 const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
+export { default as GET, default as POST } from "next-auth";
