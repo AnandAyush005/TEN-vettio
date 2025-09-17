@@ -1,4 +1,4 @@
-import { loginSchema } from "../../../schemas/authSchemas";
+import { loginSchema } from "../../lib/validation";
 
 export async function POST(req) {
   try {
