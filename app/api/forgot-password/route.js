@@ -45,7 +45,7 @@ export async function POST(req) {
     });
 
     // Send mail
-    const resetUrl = `${process.env.BASE_URL}/reset-password?token=${resetToken}`;
+    const resetUrl = `${process.env.NEXTAUTH_URL}/reset-password?token=${resetToken}`;
     await transporter.sendMail({
       from: `"Support" <${process.env.EMAIL_USER}>`,
       to: user.email,

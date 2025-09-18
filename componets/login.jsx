@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import Link from "next/link"; // ✅ import Link
+import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { useState } from "react";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email"),
@@ -13,6 +14,11 @@ const loginSchema = z.object({
 
 export default function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/Home";
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [loginError, setLoginError] = useState("");
 
   const {
     register,
@@ -23,15 +29,23 @@ export default function LoginForm() {
   });
 
   const onSubmit = async (data) => {
+    setIsSubmitting(true);
+    setLoginError("");
+
     const res = await signIn("credentials", {
       email: data.email,
       password: data.password,
       redirect: false,
-      callbackUrl: "/",
+      callbackUrl,
     });
 
-    if (!res.error) router.push("/Home");
-    else alert("Login failed: " + res.error);
+    if (!res.error) {
+      router.push(callbackUrl);
+    } else {
+      setLoginError("Login failed: " + res.error);
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
@@ -41,12 +55,12 @@ export default function LoginForm() {
           Login to <span className="text-indigo-500">Vettio</span>
         </h2>
 
-        {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <div>
             <input
               type="email"
               placeholder="Email"
+              autoComplete="email"
               {...register("email")}
               className="px-4 py-3 border rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-indigo-400"
             />
@@ -59,17 +73,15 @@ export default function LoginForm() {
             <input
               type="password"
               placeholder="Password"
+              autoComplete="current-password"
               {...register("password")}
               className="px-4 py-3 border rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-indigo-400"
             />
             {errors.password && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.password.message}
-              </p>
+              <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
             )}
           </div>
 
-          {/* ✅ Forgot password link */}
           <div className="flex justify-between items-center mt-2">
             <Link
               href="/forgot-password"
@@ -79,46 +91,54 @@ export default function LoginForm() {
             </Link>
           </div>
 
+          {loginError && (
+            <p className="text-red-500 text-sm text-center">{loginError}</p>
+          )}
+
           <button
             type="submit"
-            className="bg-indigo-500 text-white py-3 rounded-lg hover:bg-indigo-600 font-semibold transition"
+            className="bg-indigo-500 text-white py-2 rounded-md hover:bg-indigo-600 transition flex items-center justify-center"
+            disabled={isSubmitting}
           >
-            Login
+            {isSubmitting && (
+              <svg className="animate-spin w-5 h-5 mr-2 text-white" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+              </svg>
+            )}
+            {isSubmitting ? "Signing Up..." : "Sign Up"}
           </button>
         </form>
 
-        {/* Divider */}
         <div className="my-6 flex items-center justify-center gap-2">
           <span className="h-px bg-gray-300 flex-1"></span>
           <span className="text-gray-500 text-sm">OR</span>
           <span className="h-px bg-gray-300 flex-1"></span>
         </div>
 
-        {/* OAuth buttons */}
         <div className="flex flex-col gap-3">
           <button
-            onClick={() => signIn("google", { callbackUrl: "/" })}
+            onClick={() => signIn("google", { callbackUrl })}
             className="flex items-center justify-center gap-2 border py-3 rounded-lg hover:bg-gray-100 transition"
           >
             Login with Google
           </button>
 
           <button
-            onClick={() => signIn("github", { callbackUrl: "/" })}
+            onClick={() => signIn("github", { callbackUrl })}
             className="flex items-center justify-center gap-2 border py-3 rounded-lg hover:bg-gray-100 transition"
           >
             Login with GitHub
           </button>
 
           <button
-            onClick={() => signIn("discord", { callbackUrl: "/" })}
+            onClick={() => signIn("discord", { callbackUrl })}
             className="flex items-center justify-center gap-2 border py-3 rounded-lg hover:bg-gray-100 transition"
           >
             Login with Discord
           </button>
         </div>
 
-        {/* ✅ Signup link with Link */}
         <p className="text-center text-gray-600 mt-6">
           Don’t have an account?{" "}
           <Link

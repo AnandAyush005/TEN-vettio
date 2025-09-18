@@ -14,6 +14,7 @@ export default function Signup() {
     education: "",
   });
   const [errors, setErrors] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -23,18 +24,20 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const birthDate = new Date(form.dob);
     const today = new Date();
     let calculatedAge = today.getFullYear() - birthDate.getFullYear();
     const m = today.getMonth() - birthDate.getMonth();
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      calculatedAge--; // adjust if birthday hasn't occurred yet this year
+      calculatedAge--;
     }
 
     if (parseInt(form.age) !== calculatedAge) {
       setErrors(`Age (${form.age}) and DOB (${form.dob}) do not match. Calculated age: ${calculatedAge}`);
-      return; // stop submission
+      setLoading(false);
+      return;
     }
 
     const res = await fetch("/api/signup", {
@@ -44,6 +47,8 @@ export default function Signup() {
     });
 
     const data = await res.json();
+
+    setLoading(false);
 
     if (res.ok) {
       router.push("/");
@@ -72,15 +77,23 @@ export default function Signup() {
             <option value="recruiter">Recruiter</option>
             <option value="jobseeker">Jobseeker</option>
           </select>
-
-          {/* New fields */}
           <input name="age" type="number" placeholder="Age" onChange={handleChange} value={form.age} required className="px-4 py-2 border rounded-md" />
           <input name="dob" type="date" onChange={handleChange} value={form.dob} required className="px-4 py-2 border rounded-md" />
           <input name="country" placeholder="Country" onChange={handleChange} value={form.country} required className="px-4 py-2 border rounded-md" />
           <input name="education" placeholder="Education" onChange={handleChange} value={form.education} required className="px-4 py-2 border rounded-md" />
 
-          <button type="submit" className="bg-indigo-500 text-white py-2 rounded-md hover:bg-indigo-600 transition">
-            Sign Up
+          <button
+            type="submit"
+            className="bg-indigo-500 text-white py-2 rounded-md hover:bg-indigo-600 transition flex items-center justify-center"
+            disabled={loading}
+          >
+            {loading && (
+              <svg className="animate-spin w-5 h-5 mr-2 text-white" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+              </svg>
+            )}
+            {loading ? "Signing Up..." : "Sign Up"}
           </button>
         </form>
 

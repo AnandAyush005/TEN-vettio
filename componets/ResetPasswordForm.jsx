@@ -45,7 +45,7 @@ export default function ResetPasswordForm() {
       }
 
       setSuccessMsg("✅ Password reset successfully! Redirecting...");
-      setTimeout(() => router.push("/login"), 2000);
+      setTimeout(() => router.push("/"), 2000);
     } catch {
       setServerError("Server error. Try again later.");
     }
