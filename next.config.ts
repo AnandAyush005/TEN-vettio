@@ -5,19 +5,19 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "i.pravatar.cc", // option 1
+        hostname: "i.pravatar.cc",
       },
       {
         protocol: "https",
-        hostname: "api.dicebear.com", // option 2
+        hostname: "api.dicebear.com",
       },
       {
         protocol: "https",
-        hostname: "ui-avatars.com", // option 3
+        hostname: "ui-avatars.com",
       },
       {
         protocol: "https",
-        hostname: "vettio.com", // your site assets
+        hostname: "vettio.com",
         pathname: "/assets/Images/landingAssetsR/**",
       },
     ],

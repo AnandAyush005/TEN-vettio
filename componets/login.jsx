@@ -103,7 +103,7 @@ export default function LoginForm() {
             Login with Google
           </button>
 
-          <button
+          {/* <button
             onClick={() => signIn("github", { callbackUrl: "/" })}
             className="flex items-center justify-center gap-2 border py-3 rounded-lg hover:bg-gray-100 transition"
           >
@@ -115,7 +115,7 @@ export default function LoginForm() {
             className="flex items-center justify-center gap-2 border py-3 rounded-lg hover:bg-gray-100 transition"
           >
             Login with Discord
-          </button>
+          </button> */}
         </div>
 
         {/* ✅ Signup link with Link */}
