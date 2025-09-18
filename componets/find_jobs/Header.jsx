@@ -1,5 +1,5 @@
 import React from 'react';
-import { signOut } from "next-auth/react";
+import {useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Book from "../book_a_Demo"
 import Image from "next/image";
@@ -10,6 +10,8 @@ import BookButton from '../book_a_Demo';
 const Header = ({page}) => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+
+  const { data: session } = useSession();
   
   const handleSignOut = async () => {
     await signOut({ redirect: false }); // don't let next-auth redirect
@@ -45,11 +47,11 @@ const Header = ({page}) => {
             </a>
 
             <a
-              href="#"
+              href={session ? "#" : "/"}
               className="px-8 py-3 rounded-lg bg-yellow-500 text-black border-2 border-transparent hover:border-black hover:bg-white transition-colors text-center flex items-center justify-center"
               onClick={handleSignOut}
             >
-              Sign Out
+              {session ? "Sign Out" : "Sign In"}
             </a>
             <BookButton />
 

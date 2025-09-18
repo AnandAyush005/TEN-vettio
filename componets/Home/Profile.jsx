@@ -16,7 +16,14 @@ export default function Profile() {
 
   if (status === "loading")
     return <p className="text-center mt-10">Loading...</p>;
-  if (!session) return <p className="text-center mt-10">Not signed in</p>;
+  if (!session) return (
+    <section className="w-full h-full flex justify-center items-center flex-col">
+      <p className="text-center mt-10">Not signed in</p>
+      <a href="/" className=" my-2 px-8 py-3 rounded-lg bg-yellow-500 text-black border-2 border-transparent hover:border-black hover:bg-white transition-colors text-center flex items-center justify-center">
+        Sign In
+       </a>  
+    </section>
+  );
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
