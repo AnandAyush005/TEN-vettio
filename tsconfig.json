@@ -30,7 +30,7 @@
     "**/*.tsx",
     "next-env.d.ts",
     ".next/types/**/*.ts"
-, "componets/Home/Profile.jsx", "app/profile/page.jsx"  ],
+, "componets/Home/Profile.jsx", "app/profile/page.jsx", "componets/ResetPasswordForm.jsx"  ],
   "exclude": [
     "node_modules"
   ]
