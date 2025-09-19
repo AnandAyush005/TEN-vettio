@@ -97,7 +97,7 @@ export default function LoginForm() {
         {/* OAuth buttons */}
         <div className="flex flex-col gap-3">
           <button
-            onClick={() => signIn("google", { callbackUrl: "/" })}
+            onClick={() => signIn("google", { callbackUrl: "/Home" })}
             className="flex items-center justify-center gap-2 border py-3 rounded-lg hover:bg-gray-100 transition"
           >
             Login with Google
