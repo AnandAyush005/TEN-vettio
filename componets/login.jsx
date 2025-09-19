@@ -100,22 +100,8 @@ export default function LoginForm() {
             onClick={() => signIn("google", { callbackUrl: "/Home" })}
             className="flex items-center justify-center gap-2 border py-3 rounded-lg hover:bg-gray-100 transition"
           >
-            Login with Google
+            <img src="google-icon-logo-svgrepo-com.svg" className="w-6"/>Login with Google
           </button>
-
-          {/* <button
-            onClick={() => signIn("github", { callbackUrl: "/" })}
-            className="flex items-center justify-center gap-2 border py-3 rounded-lg hover:bg-gray-100 transition"
-          >
-            Login with GitHub
-          </button>
-
-          <button
-            onClick={() => signIn("discord", { callbackUrl: "/" })}
-            className="flex items-center justify-center gap-2 border py-3 rounded-lg hover:bg-gray-100 transition"
-          >
-            Login with Discord
-          </button> */}
         </div>
 
         {/* ✅ Signup link with Link */}
