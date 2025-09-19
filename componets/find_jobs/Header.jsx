@@ -53,7 +53,7 @@ const Header = ({page}) => {
               {session ? "Sign Out" : "Sign In"}
             </a>
 
-            {session ? <BookButton /> : ""}
+            <BookButton />
 
             <a
               href="/profile"
