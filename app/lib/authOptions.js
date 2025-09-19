@@ -1,7 +1,5 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import GitHubProvider from "next-auth/providers/github";
-import DiscordProvider from "next-auth/providers/discord";
 import bcrypt from "bcrypt";
 import { connectDB } from "./DbConnection";
 import User from "../models/User";
@@ -32,15 +30,6 @@ export const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
-    GitHubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
-    }),
-    DiscordProvider({
-      clientId: process.env.DISCORD_CLIENT_ID,
-      clientSecret: process.env.DISCORD_CLIENT_SECRET,
-      authorization: { params: { scope: "identify email" } },
     }),
   ],
 
@@ -94,7 +83,7 @@ export const authOptions = {
   },
 
   pages: {
-    signIn: "/login",
+    signIn: "/",
   },
 
   secret: process.env.NEXTAUTH_SECRET,

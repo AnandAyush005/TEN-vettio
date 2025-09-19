@@ -1,7 +1,6 @@
 import React from 'react';
 import {useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Book from "../book_a_Demo"
 import Image from "next/image";
 import {User, Menu, X  } from "lucide-react";
 import { useState } from "react";
@@ -53,7 +52,8 @@ const Header = ({page}) => {
             >
               {session ? "Sign Out" : "Sign In"}
             </a>
-            <BookButton />
+
+            {session ? <BookButton /> : ""}
 
             <a
               href="/profile"
